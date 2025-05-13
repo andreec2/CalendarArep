@@ -1,0 +1,44 @@
+/* Este contenedor ocupa toda la pantalla y centra su contenido */
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 10px;
+    padding: 0;
+    background-color: #000000;
+  }
+  
+  /* Caja vinotinto */
+  .login-container {
+    background-color: #3a2d2d;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilo del texto */
+  .login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  /* Botón */
+  .login-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffffff;
+    color: #3a2d2d;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #ddd;
+  }
+  

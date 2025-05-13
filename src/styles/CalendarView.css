@@ -1,0 +1,34 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    min-height: 100vh;
+    background-color: #3a2d2d;
+  }
+  
+  .calendar-container h2 {
+    margin-bottom: 20px;
+  }
+  
+  .calendar-container button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .calendar-container ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .calendar-container li {
+    margin-bottom: 10px;
+    background-color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
