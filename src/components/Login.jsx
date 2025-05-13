@@ -58,6 +58,8 @@ function Login() {
 
   return (
     <div className="center-text">
+        <h1>Sistema Inteligente para Analisis y
+        Optimizacion de Calendarios Personales</h1>
       <div className="login-container">
         <h2>Iniciar sesión para ver tu calendario</h2>
         <button onClick={handleLogin}>Login con Google</button>
