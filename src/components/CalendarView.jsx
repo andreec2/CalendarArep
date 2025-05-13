@@ -51,9 +51,61 @@ function CalendarView() {
     setWeekStart(prevWeek);
   };
 
-  const goToBack = () => {
-
+  const mapEventsToSimpleFormat = (events) => {
+    return events.map(event => {
+      const isAllDay = !event.start.dateTime && !event.end.dateTime;
+  
+      const startDateTime = event.start.dateTime;
+      const endDateTime = event.end.dateTime;
+  
+      const date = isAllDay
+        ? event.start.date
+        : new Date(startDateTime).toISOString().split('T')[0];
+  
+      const startTime = isAllDay
+        ? null
+        : new Date(startDateTime).toISOString().split('T')[1].substring(0, 5);
+  
+      const endTime = isAllDay
+        ? null
+        : new Date(endDateTime).toISOString().split('T')[1].substring(0, 5);
+  
+      return {
+        allDay: isAllDay,
+        endTime,
+        startTime,
+        date,
+        title: event.summary || 'Sin título'  
+      };
+    });
   };
+  
+
+  const goToBack = async () => {
+    try {
+      const simplifiedEvents = mapEventsToSimpleFormat(events);
+      console.log(simplifiedEvents);
+  
+      const response = await fetch('http://localhost:3000/api/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(simplifiedEvents)
+      });
+  
+      if (response.ok) {
+        console.log('Eventos enviados exitosamente');
+        const data = await response.json();
+        console.log('Respuesta del backend:', data);
+      } else {
+        console.error('Error al enviar eventos:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al enviar eventos:', error);
+    }
+  };
+  
 
     return (
       <div className="calendar-container">
