@@ -89,7 +89,7 @@ function CalendarView() {
       const simplifiedEvents = mapEventsToSimpleFormat(events);
       console.log(simplifiedEvents);
   
-      const response = await fetch('http://ec2-54-84-30-76.compute-1.amazonaws.com:8443/api/agenda/analizar', {
+      const response = await fetch('http://localhost:8080/api/agenda/analizar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

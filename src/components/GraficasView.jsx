@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MiGrafico from './Graficas'; // Componente de gráfica
+import MiGrafico from './Graficas'; // Asegúrate de importar tu componente de gráfica
 
 const GraficasView = ({ data, onParsed }) => {
   const [dailyData, setDailyData] = useState([]);
@@ -23,6 +23,7 @@ const GraficasView = ({ data, onParsed }) => {
     }
   }, [data]);
 
+  // Función para convertir actividades en formato para MiGrafico
   const convertirADataGrafico = (actividades) =>
     Object.entries(actividades).map(([nombre, valor]) => ({
       name: nombre,
@@ -30,51 +31,24 @@ const GraficasView = ({ data, onParsed }) => {
     }));
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
       {dailyData.map((dia, index) => (
-        <div
-          key={index}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: '300px',
-            margin: '1rem',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            padding: '1rem',
-            background: '#f9f9f9'
-          }}
-        >
+        <div key={index}>
           <MiGrafico
             titulo={`Día ${dia.date}`}
             data={convertirADataGrafico(dia.actividades)}
           />
-          <p style={{ marginTop: '0.5rem', fontStyle: 'italic', color: '#555' }}>
+          <p style={{ textAlign: 'center', maxWidth: '300px' }}>
             {dia.recomendacion}
           </p>
         </div>
       ))}
 
-      {weeklyData && (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            width: '300px',
-            margin: '1rem',
-            border: '1px solid #ddd',
-            borderRadius: '8px',
-            padding: '1rem',
-            background: '#f0f0ff'
-          }}
-        >
-          <MiGrafico
-            titulo="Resumen Semanal"
-            data={convertirADataGrafico(weeklyData)}
-          />
-        </div>
+      {weeklyData && (      
+        <MiGrafico
+          titulo="Resumen Semanal"
+          data={convertirADataGrafico(weeklyData)}
+        />
       )}
     </div>
   );
